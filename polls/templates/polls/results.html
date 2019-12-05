@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Polls</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>The results for all participants are!!!</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Genre</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for choice in question.choice_set.all %}
+                <tr>
+                    <td>{{ choice.choice_text }}</td>
+                    <td>{{ choice.votes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <ul>
+
+        </ul>
+
+
+        <p><a href="{% url 'polls:detail' question.id %}">Vote again?</a> |
+        <a href="{% url 'polls:index' %}">Home</a>
+        </p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

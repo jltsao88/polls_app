@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Polls</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="container nav-wrapper">
+            <a href="{% url 'polls:index' %}" class="brand-logo">Movie Genre</a>
+            <ul id="nav-mobile" class="right">
+                <li><a href="{% url 'polls:index' %}">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3 style="text-align: center">Click on the poll below to take part!</h3>
+    </div>
+
+    <div class="container">
+        {% if latest_question_list %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Results</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for question in latest_question_list %}
+            <tr>
+                <td><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td>
+                <td><a href="{% url 'polls:results' question.id %}">View results</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <p>No polls are available.</p>
+        {% endif %}
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
