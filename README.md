@@ -1,1 +1,1 @@
-Django web app that polls users
+Django web app that polls users, APP found here https://stark-ravine-67664.herokuapp.com/
